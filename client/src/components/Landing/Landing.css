@@ -1,0 +1,33 @@
+.bottom {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.5rem;
+    color: white;
+}
+
+.logoHenry {
+    width: 2rem;
+    height: 2rem;
+}
+
+.landing {
+    /* background-color: var(--primario); */
+    background-image: url('https://www.rd.com/wp-content/uploads/2021/07/GettyImages-1255233692-e1626208670264.jpg');
+    padding-top: 20rem;
+    height: 61.5rem;
+    width: 100%;
+    background-position: bottom center;
+}
+
+@media (max-width: 360px) {
+    .landing {
+        padding-top: 10rem;
+        height: 55.5rem;
+        margin-top: 0rem;
+        background-position: bottom center;
+    }
+}
+
+.message {
+    font-size: x-large;
+}

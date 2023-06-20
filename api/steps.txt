@@ -1,0 +1,16 @@
+31/05/23
+Lo primero que hice fue hacer npm install en la api y en client ... en api también instalé axios
+Node Version: v16.17.0
+NPM Version: 8.19.2
+
+También creé la base de datos llamada dogs desde psql
+
+Creé file llamado .env en la carpeta api que tiene los datos necesarios: DB_USER, DB_PASSWORD, DB_HOST AND API_KEY
+
+Creé Módulo Dog y Temperament y los inicié e hice la relación de Muchos a Muchos en el file db.js (En el file db armé un tentativo de las asociaciones ... todaví no funciona bien)
+
+Comencé a crear las rutas y los controllers para dog y el tempRouter-> jugando con insomnia
+
+01/06/23
+Sigo con las rutas y los controllers de dog
+

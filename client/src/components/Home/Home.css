@@ -1,0 +1,34 @@
+html {
+    background: url('https://www.fabmood.com/wp-content/uploads/2021/02/wallpaper-5.jpg');
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+}
+
+.prevBar,
+.nextBar {
+    background-color: rgba(203, 161, 111, 0.5);
+    opacity: 0.4;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    width: 2rem;
+    height: 83rem;
+    cursor: pointer;
+}
+
+.prevBar:hover,
+.nextBar:hover {
+    background-color: rgba(203, 161, 111, 0.5);
+    opacity: 1;
+    transform: scaleX(2);
+}
+
+.prevBar:hover {
+    transform-origin: right;
+}
+
+.nextBar:hover {
+    transform-origin: left;
+}

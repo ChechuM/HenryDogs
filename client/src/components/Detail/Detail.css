@@ -1,0 +1,26 @@
+.total {
+    padding: 1rem;
+    background: rgba(172, 167, 151, 70%);
+    width: 70rem;
+    margin-left: 31.5rem;
+}
+
+.detailImage {
+    height: 30rem;
+    max-width: 70rem;
+    width: auto;
+    border-radius: 1rem;
+}
+
+.idDetail {
+    font-size: smaller;
+}
+
+.dogTemp {
+    padding: 2rem;
+}
+
+.weight,
+.height {
+    font-size: smaller;
+}

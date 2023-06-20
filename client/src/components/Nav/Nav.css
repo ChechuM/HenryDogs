@@ -1,0 +1,27 @@
+.navBar {
+    background-color: rgba(203, 161, 111, 0.5);
+    height: 8rem;
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.homeBtn {
+    background-color: var(--buttons);
+    color: var(--highlights);
+    border: 0.1rem solid var(--highlight);
+    top: 3rem;
+    position: absolute;
+    right: 3rem;
+    cursor: pointer;
+    font-size: larger;
+}
+
+.spanHome {
+    display: none;
+}
+
+.homeBtn:hover .spanHome {
+    display: inline;
+    transition: 0.3ms;
+}

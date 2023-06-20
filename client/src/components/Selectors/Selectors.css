@@ -1,0 +1,13 @@
+.bigDiv {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 7rem;
+    padding-right: 7rem;
+    margin-top: -4.5rem;
+}
+
+.spanTitle,
+.selectBar {
+    font-weight: 500;
+    font-size: medium;
+}

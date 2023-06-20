@@ -1,0 +1,17 @@
+.bocetoDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(234, 236, 241, 0.8);
+    width: 80rem;
+}
+
+.imgBoceto {
+    height: 15rem;
+    margin: 2rem;
+}
+
+.textBoceto {
+    font-size: medium;
+    margin-left: -16rem;
+}

@@ -1,0 +1,37 @@
+.formDiv {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    padding: 0.2rem;
+    padding-top: 2rem;
+    width: 120rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(234, 236, 241, 0.8);
+}
+
+.tempDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+.inputGral {
+    font-size: medium;
+    width: 30rem;
+}
+
+.labelForm {
+    font-size: medium;
+}
+
+.inputNumber {
+    font-size: medium;
+    width: 11rem;
+}
+
+.tempDiv {
+    font-size: medium;
+}
