@@ -18,23 +18,24 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
 import defaultIcon from '../Form/defaultIcon';
 
-// export function validate({ name, temperaments, minHeight, minWeight }) {
-//     const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
-//     let errors = {};
-//     if (!name) errors.name = 'Please write the name of the dog';
-//     if (name.length > 20) errors.name = 'Name must have 20 characters max';
-//     if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
-//     if (minHeight < 1) errors.minHeight = 'Minimum Height is 1 meter';
-//     if (minWeight < 1) errors.minWeight = 'Minimun Weight is 1 kg';
-//     if (temperaments.length === 0) errors.temperaments = 'Please pick at least one temperament from the list'
-// }
+export function validate({ name, temperaments, minHeight, minWeight }) {
+    const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
+    let errors = {};
+    if (!name) errors.name = 'Please write the name of the dog';
+    if (name.length > 20) errors.name = 'Name must have 20 characters max';
+    if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
+    if (minHeight < 1) errors.minHeight = 'Minimum Height is 1 meter';
+    if (minWeight < 1) errors.minWeight = 'Minimun Weight is 1 kg';
+    if (temperaments.length === 0) errors.temperaments = 'Please pick at least one temperament from the list';
+    return errors;
+}
 
 export default function Create() {
     const dispatch = useDispatch();
 
     const [input, setInput] = useState({
         name: '',
-        image: defaultIcon,
+        image: '',
         temperaments: '',
         span: '',
         maxHeight: '',
@@ -43,12 +44,12 @@ export default function Create() {
         minWeight: '',
     });
 
-    // const [errors, setErrors] = useState({
-    //     name: '',
-    //     temperaments: '',
-    //     minHeight: '',
-    //     minWeight: ''
-    // });
+    const [errors, setErrors] = useState({
+        name: '',
+        temperaments: '',
+        minHeight: '',
+        minWeight: ''
+    });
 
     const handleInputChange = (event) => {
         const { value, name } = event.target;
@@ -56,12 +57,12 @@ export default function Create() {
             ...input,
             [name]: value
         })
-        // setErrors(
-        //     validate({
-        //         ...input,
-        //         [name]: value
-        //     })
-        // )
+        setErrors(
+            validate({
+                ...input,
+                [name]: value
+            })
+        )
     };
 
     const handleSubmit = (event) => {
@@ -89,12 +90,12 @@ export default function Create() {
 
     return (
         <div className="bothDiv">
-            <Boceto input={input}
-                // errors={errors} 
-                setInput={setInput} />
             <Form handleInputChange={handleInputChange} input={input} setInput={setInput}
-                // errors={errors} setErrors={setErrors} 
-                handleSubmit={handleSubmit} />
+                errors={errors} setErrors={setErrors}
+                handleSubmit={handleSubmit} className='form' />
+            <Boceto input={input}
+                errors={errors}
+                setInput={setInput} className='boceto' />
         </div>
     )
 

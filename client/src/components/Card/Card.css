@@ -1,7 +1,9 @@
 .upperDiv {
     border-radius: 1rem;
-    margin: 2.1rem;
+    margin: 1.5rem;
+    margin-top: 3.5rem;
     background: var(--highlights);
+    width: 24rem;
 }
 
 .nameDog {
@@ -15,7 +17,8 @@
 .image {
     height: 18rem;
     border-radius: 1rem;
-    width: auto;
+    width: 24rem;
+    cursor: pointer;
 }
 
 .divTemps,

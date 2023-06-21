@@ -41,7 +41,7 @@ export default function Form(props) {
     return (
         <div className="formDiv">
             <form onSubmit={handleSubmit}>
-                <label className='labelForm'>Name: </label>
+                <label className='labelForm title'>Name: </label>
                 <input
                     className='inputGral'
                     name='name'
@@ -50,8 +50,8 @@ export default function Form(props) {
                     onChange={handleInputChange}
                     value={input.name} />
                 <span>  </span>
-
-                <label className='labelForm'> Image: </label>
+                <hr />
+                <label className='labelForm title'> Image: </label>
                 <input
                     className='inputGral'
                     name='image'
@@ -59,8 +59,8 @@ export default function Form(props) {
                     type='text'
                     onChange={handleInputChange}
                     value={input.image} />
-
-                <label className='labelForm'> Life span: </label>
+                <hr />
+                <label className='labelForm title'> Life span: </label>
                 <input
                     className='inputGral'
                     name='span'
@@ -70,7 +70,7 @@ export default function Form(props) {
                     value={input.span} />
                 <label className='labelForm'> years </label>
                 <hr />
-                <label className='labelForm'> Height: </label>
+                <label className='labelForm title'> Height: </label>
                 <input
                     className='inputNumber'
                     name='minHeight'
@@ -88,7 +88,7 @@ export default function Form(props) {
                     value={input.maxHeight} />
                 <label className='labelForm'> cm.  </label>
                 <span> </span>
-                <label className='labelForm'>  Weight: </label>
+                <label className='labelForm title'>  Weight: </label>
                 <input
                     className='inputNumber'
                     name='minWeight'
@@ -106,11 +106,11 @@ export default function Form(props) {
                     value={input.maxWeight} />
                 <label className='labelForm'> kg. </label>
                 <hr />
-                <label className='labelForm'> Temperament: </label>
+                <label className='labelForm title'> Temperament: </label>
                 <div className="tempDiv">
                     {
                         temperaments.map((temp) => {
-                            return <p>{temp} <input className='tempCheck'
+                            return <p className='tempP'> {temp}  <input className='tempCheck'
                                 name='temps'
                                 id={temp}
                                 type='checkbox'

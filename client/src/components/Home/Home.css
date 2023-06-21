@@ -9,19 +9,19 @@ html {
 
 .prevBar,
 .nextBar {
-    background-color: rgba(203, 161, 111, 0.5);
-    opacity: 0.4;
-    margin-top: 1rem;
-    padding-top: 2rem;
+    background-color: rgba(234, 236, 241, 0.7);
+    padding-top: 4rem;
     width: 2rem;
-    height: 83rem;
+    height: 51.5rem;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .prevBar:hover,
 .nextBar:hover {
-    background-color: rgba(203, 161, 111, 0.5);
-    opacity: 1;
+    background-color: rgba(234, 236, 241, 0.85);
     transform: scaleX(2);
 }
 

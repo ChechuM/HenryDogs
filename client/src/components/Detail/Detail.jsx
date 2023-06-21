@@ -43,13 +43,17 @@ export default function Detail() {
 
     return (
         <div className="total">
-            <p className='idDetail'>id: {dog.id}</p>
             <h1 className='detailName'>{dog.name}</h1>
             <img src={dog.image} alt='dog' className='detailImage' />
-            <p className='dogTemp'> Temperament: {dog.temperament}</p>
-            <p className='span'>Life Span: {dog.span}</p>
-            <p className='weight'> Weight: {dog.weight}</p>
-            <p className='height'> Height: {dog.height}</p>
+            <div className="info">
+                <p className='dogTemp'><span className='title'>Temperament: </span>{dog.temperament}</p>
+                <div className="WHdiv">
+                    <p className='weight'> <span className="title">Weight:  </span>{dog.weight}</p>
+                    <p className='height'> <span className="title">Height:  </span>{dog.height}</p>
+                </div>
+                <p className='span'><span className="title">Life Span:  </span>  {dog.span}</p>
+                <p className='idDetail'><span className="title">id:  </span>  {dog.id}</p>
+            </div>
         </div>
     )
 };

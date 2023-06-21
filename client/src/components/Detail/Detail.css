@@ -1,8 +1,16 @@
 .total {
     padding: 1rem;
-    background: rgba(172, 167, 151, 70%);
+    background-color: rgba(234, 236, 241, 0.7);
     width: 70rem;
+    height: 51rem;
     margin-left: 31.5rem;
+    padding-top: -1rem;
+    color: var(--buttons);
+}
+
+.detailName {
+    font-size: x-large;
+    margin-top: 0;
 }
 
 .detailImage {
@@ -12,15 +20,38 @@
     border-radius: 1rem;
 }
 
-.idDetail {
-    font-size: smaller;
+.info {
+    margin-top: 1rem;
+    padding-top: 0.1rem;
+    background: var(--highlights);
+    height: 13rem;
+    border-radius: 5px;
+}
+
+.title {
+    font-weight: 600;
 }
 
 .dogTemp {
-    padding: 2rem;
+    font-size: large;
 }
 
-.weight,
-.height {
-    font-size: smaller;
+.WHdiv {
+    display: flex;
+    justify-content: space-around;
+    font-size: medium;
+    margin-top: -2.5rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+}
+
+.span {
+    font-size: medium;
+    margin-top: -1.1rem;
+}
+
+.idDetail {
+    font-size: small;
+    font-weight: 500;
+    margin-top: -1rem;
 }

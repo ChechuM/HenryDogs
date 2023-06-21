@@ -17,6 +17,8 @@ import Cards from '../Cards/Cards'
 import { React, useEffect, useState } from 'react';
 import * as actions from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function Home(props) {
     const dogShown = useSelector(store => store.dogShown)
@@ -31,7 +33,7 @@ export default function Home(props) {
 
     const [currentPg, setCurrentPg] = useState(0);
 
-    const ITEMS_PER_PAGE = 8; // cuántos items quiero mostrar por página
+    const ITEMS_PER_PAGE = 7; // cuántos items quiero mostrar por página -1 
 
     const nextHandler = () => {
         // éste handler va a cambiar el nro de página + 1
@@ -48,7 +50,7 @@ export default function Home(props) {
 
     return (
         <div className="home">
-            <div className="prevBar" onClick={() => prevHandler()}> prev </div>
+            <div className="prevBar" onClick={() => prevHandler()}><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
 
             <div className='cards'>
                 <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
@@ -60,7 +62,7 @@ export default function Home(props) {
                 <button onClick={() => nextHandler()} className='nextBtn'> next </button>
             </div> */}
 
-            <div className="nextBar" onClick={() => nextHandler()}>  next </div>
+            <div className="nextBar" onClick={() => nextHandler()}>  <Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
         </div>
     )
 }

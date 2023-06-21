@@ -1,9 +1,9 @@
 .bocetoDiv {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
     background-color: rgba(234, 236, 241, 0.8);
-    width: 80rem;
+    width: 40rem;
 }
 
 .imgBoceto {
@@ -14,4 +14,8 @@
 .textBoceto {
     font-size: medium;
     margin-left: -16rem;
+}
+
+.warning {
+    background-color: red;
 }

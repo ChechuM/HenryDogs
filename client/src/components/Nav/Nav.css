@@ -1,5 +1,6 @@
 .navBar {
-    background-color: rgba(203, 161, 111, 0.5);
+    /* background-color: rgba(203, 161, 111, 0.5); */
+    background-color: whitesmoke;
     height: 8rem;
     margin-top: 0.7rem;
     margin-bottom: 1rem;

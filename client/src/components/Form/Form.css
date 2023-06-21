@@ -3,19 +3,12 @@
     margin-left: 2rem;
     padding: 0.2rem;
     padding-top: 2rem;
-    width: 120rem;
+    width: 85rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
-    background-color: rgba(234, 236, 241, 0.8);
-}
-
-.tempDiv {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-left: 2rem;
-    padding-right: 1rem;
+    background-color: rgba(234, 236, 241, 0.9);
+    color: var(--buttons);
 }
 
 .inputGral {
@@ -34,4 +27,27 @@
 
 .tempDiv {
     font-size: medium;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.tempCheck {
+    margin: 0.7rem;
+}
+
+.tempP {
+    margin: 0.3rem;
+    color: var(--buttons);
+    background-color: var(--secundario);
+    border-radius: 8px;
+    padding-left: 0.5rem;
+    cursor:
+    ;
+}
+
+.tempP:hover {
+    background-color: var(--highlights);
 }

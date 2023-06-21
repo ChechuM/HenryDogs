@@ -1,13 +1,10 @@
 :root {
   --primario: #EAECF1;
-  /* --secundario: #FFBFBF; */
-  /* --buttons: #C45258; */
-  /* --highlights: #FF878A; */
-  --black: #000;
-
   --secundario: #cba16f;
-  --buttons: #005B47;
+  --black: #000;
   --highlights: #ffe9d0;
+  --buttons: #005B47;
+  --loveheart: ♡
 }
 
 html {
