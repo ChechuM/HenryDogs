@@ -11,6 +11,7 @@
 import './Detail.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import defaultIcon from '../Form/defaultIcon';
 
 export default function Detail() {
     const { idBreed } = useParams();
@@ -29,6 +30,7 @@ export default function Detail() {
         fetch(`http://localhost:3001/dogs/${idBreed}`)
             .then((response) => response.json())
             .then((dog) => {
+                if (!dog.image) dog.image = defaultIcon;
                 setDog({
                     id: dog.id,
                     name: dog.name,

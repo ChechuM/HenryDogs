@@ -18,19 +18,19 @@ export default function Boceto(props) {
                 {
                     errors.name && <p className="warning">{errors.name}</p>
                 }
-                <p className='tempBoceto'>Temperaments: {input.temperaments}</p>
+                <p className='tempBoceto'> <span className="title">Temperaments:</span> {input.temperaments} </p>
                 {
                     errors.temperaments && <p className="warning">{errors.temperaments}</p>
                 }
-                <p className='weightBoceto'>Weight: {input.minWeight} - {input.maxWeight} kg.</p>
+                <p className='weightBoceto'> <span className="title">Weight:</span> {input.minWeight} - {input.maxWeight} kg.</p>
                 {
                     errors.minWeight && <p className="warning">{errors.minWeight}</p>
                 }
-                <p className='heightBoceto'>Height: {input.minHeight} - {input.maxHeight} cm.</p>
+                <p className='heightBoceto'><span className="title">Height:</span> {input.minHeight} - {input.maxHeight} cm.</p>
                 {
                     errors.minHeight && <p className="warning">{errors.minHeight}</p>
                 }
-                <p className='spanBoceto'>Life Span: {input.span} years</p>
+                <p className='spanBoceto'><span className="title">Life Span:</span> {input.span} years</p>
             </div>
         </div>
     )

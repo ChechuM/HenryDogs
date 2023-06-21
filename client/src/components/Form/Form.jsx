@@ -70,41 +70,48 @@ export default function Form(props) {
                     value={input.span} />
                 <label className='labelForm'> years </label>
                 <hr />
-                <label className='labelForm title'> Height: </label>
-                <input
-                    className='inputNumber'
-                    name='minHeight'
-                    type="number"
-                    placeholder='Min height'
-                    onChange={handleInputChange}
-                    value={input.minHeight} />
-                <label> - </label>
-                <input
-                    className='inputNumber'
-                    name='maxHeight'
-                    type="number"
-                    placeholder='Max height'
-                    onChange={handleInputChange}
-                    value={input.maxHeight} />
-                <label className='labelForm'> cm.  </label>
-                <span> </span>
-                <label className='labelForm title'>  Weight: </label>
-                <input
-                    className='inputNumber'
-                    name='minWeight'
-                    type="number"
-                    placeholder='Min weight'
-                    onChange={handleInputChange}
-                    value={input.minWeight} />
-                <label> - </label>
-                <input
-                    className='inputNumber'
-                    name='maxWeight'
-                    type="number"
-                    placeholder='Max weight'
-                    onChange={handleInputChange}
-                    value={input.maxWeight} />
-                <label className='labelForm'> kg. </label>
+
+                <div className="WeHe">
+                    <div className="heightForm">
+                        <label className='labelForm title'> Height: </label>
+                        <input
+                            className='inputNumber'
+                            name='minHeight'
+                            type="number"
+                            placeholder='Min height'
+                            onChange={handleInputChange}
+                            value={input.minHeight} />
+                        <label> - </label>
+                        <input
+                            className='inputNumber'
+                            name='maxHeight'
+                            type="number"
+                            placeholder='Max height'
+                            onChange={handleInputChange}
+                            value={input.maxHeight} />
+                        <label className='labelForm'> cm.  </label>
+                    </div>
+
+                    <div className="weight">
+                        <label className='labelForm title'>  Weight: </label>
+                        <input
+                            className='inputNumber'
+                            name='minWeight'
+                            type="number"
+                            placeholder='Min weight'
+                            onChange={handleInputChange}
+                            value={input.minWeight} />
+                        <label> - </label>
+                        <input
+                            className='inputNumber'
+                            name='maxWeight'
+                            type="number"
+                            placeholder='Max weight'
+                            onChange={handleInputChange}
+                            value={input.maxWeight} />
+                        <label className='labelForm'> kg. </label>
+                    </div>
+                </div>
                 <hr />
                 <label className='labelForm title'> Temperament: </label>
                 <div className="tempDiv">

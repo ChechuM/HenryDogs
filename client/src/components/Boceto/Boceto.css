@@ -4,6 +4,7 @@
     bottom: 3rem;
     background-color: rgba(234, 236, 241, 0.8);
     width: 40rem;
+    color: var(--buttons)
 }
 
 .imgBoceto {
@@ -12,10 +13,12 @@
 }
 
 .textBoceto {
+    background-color: var(--highlights);
     font-size: medium;
-    margin-left: -16rem;
+    width: 40rem;
 }
 
 .warning {
-    background-color: red;
+    background-color: var(--primario);
+    color: red
 }

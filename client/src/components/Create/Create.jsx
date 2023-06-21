@@ -18,14 +18,16 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
 import defaultIcon from '../Form/defaultIcon';
 
-export function validate({ name, temperaments, minHeight, minWeight }) {
+export function validate({ name, temperaments, minHeight, maxHeight, minWeight, maxWeight }) {
     const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
     let errors = {};
     if (!name) errors.name = 'Please write the name of the dog';
     if (name.length > 20) errors.name = 'Name must have 20 characters max';
     if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
     if (minHeight < 1) errors.minHeight = 'Minimum Height is 1 meter';
+    if (minHeight > maxHeight) errors.minHeight = 'Minimum Height cannot be higher than Maximum Height'
     if (minWeight < 1) errors.minWeight = 'Minimun Weight is 1 kg';
+    if (minWeight > maxWeight) errors.minWeight = 'Minimum Weight cannot be higher than Maximum Weight'
     if (temperaments.length === 0) errors.temperaments = 'Please pick at least one temperament from the list';
     return errors;
 }
@@ -74,18 +76,17 @@ export default function Create() {
                 image: defaultIcon
             })
         }
-        // const errors = validate(input);
+        const errors = validate(input);
         dispatch(actions.addDog(input))
         alert('New dog created!')
-        // if (Object.values(errors).length === 0) {
-        //     dispatch(actions.addDog(input))
-        //     alert('New dog created!')
-        // }
-        // else {
-        //     setErrors(errors);
-        //     alert('The new dog has to fulfill certain parameters, please check that everything is ok')
-        // }
-
+        if (Object.values(errors).length === 0) {
+            dispatch(actions.addDog(input))
+            alert('New dog created!')
+        }
+        else {
+            setErrors(errors);
+            alert('The new dog has to fulfill certain parameters, please check that everything is ok')
+        }
     };
 
     return (

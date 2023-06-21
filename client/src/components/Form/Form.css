@@ -1,5 +1,4 @@
 .formDiv {
-    margin-top: 2rem;
     margin-left: 2rem;
     padding: 0.2rem;
     padding-top: 2rem;
@@ -12,8 +11,10 @@
 }
 
 .inputGral {
+    margin-left: .8rem;
+    margin-right: .8rem;
     font-size: medium;
-    width: 30rem;
+    width: 35rem;
 }
 
 .labelForm {
@@ -23,6 +24,11 @@
 .inputNumber {
     font-size: medium;
     width: 11rem;
+}
+
+.WeHe {
+    display: flex;
+    justify-content: space-around;
 }
 
 .tempDiv {

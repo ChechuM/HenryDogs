@@ -1,9 +1,14 @@
 import './Card.css';
 import { NavLink } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
+import defaultIcon from '../Form/defaultIcon';
 
 export default function Card({ id, name, image, temperament, weight }) {
     const navigate = useNavigate();
+
+    if (!image) {
+        image = defaultIcon
+    }
 
     return (
         <div className="upperDiv">
