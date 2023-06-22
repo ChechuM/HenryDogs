@@ -49,20 +49,26 @@ export default function Home(props) {
     }
 
     return (
-        <div className="home">
-            <div className="prevBar" onClick={() => prevHandler()}><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
+        <div className="test">
+            <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
+            <hr />
+            <span>{dogShown.length}</span>
+            <div className="home">
 
-            <div className='cards'>
-                <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
+                <div className="prevBar" onClick={() => prevHandler()}><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
+
+                <div className='cards'>
+                    <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
+                </div>
+
+                {/* <div className='pgHandlers'>
+    <button onClick={() => prevHandler()} className='prevBtn'> prev </button>
+    <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
+    <button onClick={() => nextHandler()} className='nextBtn'> next </button>
+</div> */}
+
+                <div className="nextBar" onClick={() => nextHandler()}>  <Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
             </div>
-
-            {/* <div className='pgHandlers'>
-                <button onClick={() => prevHandler()} className='prevBtn'> prev </button>
-                <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
-                <button onClick={() => nextHandler()} className='nextBtn'> next </button>
-            </div> */}
-
-            <div className="nextBar" onClick={() => nextHandler()}>  <Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
         </div>
     )
 }

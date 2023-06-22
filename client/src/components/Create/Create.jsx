@@ -24,9 +24,7 @@ export function validate({ name, temperaments, minHeight, maxHeight, minWeight, 
     if (!name) errors.name = 'Please write the name of the dog';
     if (name.length > 20) errors.name = 'Name must have 20 characters max';
     if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
-    if (minHeight < 1) errors.minHeight = 'Minimum Height is 1 meter';
     if (minHeight > maxHeight) errors.minHeight = 'Minimum Height cannot be higher than Maximum Height'
-    if (minWeight < 1) errors.minWeight = 'Minimun Weight is 1 kg';
     if (minWeight > maxWeight) errors.minWeight = 'Minimum Weight cannot be higher than Maximum Weight'
     if (temperaments.length === 0) errors.temperaments = 'Please pick at least one temperament from the list';
     return errors;

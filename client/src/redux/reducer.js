@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "./actions";
+import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, filterByOrigin } from "./actions";
 
 const initialState = {
     allDogs: [],
@@ -13,6 +13,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 dogShown: [...action.payload],
                 allDogs: [...state.allDogs, ...action.payload]
+                // esto está bien?????
             }
 
         case GET_ALL_TEMPERAMENTS:
@@ -39,6 +40,19 @@ const rootReducer = (state = initialState, action) => {
             if (action.payload === 'Api') filteredByOrigin = state.allDogs.filter(dog => typeof dog.id === 'number')
             if (action.payload === 'User') filteredByOrigin = state.allDogs.filter(dog => typeof dog.id === 'string')
             if (action.payload === 'selectOrigin') filteredByOrigin = state.allDogs
+
+            // let uniqueDogShown = []
+
+            // for (let i = 0; i < filteredByOrigin.length; i++) {
+            //     let value = filteredByOrigin[i];
+            //     if (uniqueDogShown.indexOf(value) !== -1) {
+            //         uniqueDogShown.push(value)
+            //     }
+            //     else return;
+            // }
+
+            // console.log('este es el array de unicos', uniqueDogShown)
+
             return {
                 ...state,
                 dogShown: filteredByOrigin

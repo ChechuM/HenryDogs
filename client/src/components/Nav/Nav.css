@@ -7,10 +7,18 @@
     padding-top: 1rem;
 }
 
+.hide {
+    display: none;
+    color: var(--buttons);
+    font-size: medium;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
 .homeBtn {
-    background-color: var(--buttons);
-    color: var(--highlights);
-    border: 0.1rem solid var(--highlight);
+    height: 3rem;
+    width: auto;
+    border: none;
     top: 3rem;
     position: absolute;
     right: 3rem;
@@ -18,11 +26,12 @@
     font-size: larger;
 }
 
-.spanHome {
-    display: none;
+.homeBtn:hover .hide {
+    display: inline;
 }
 
-.homeBtn:hover .spanHome {
-    display: inline;
-    transition: 0.3ms;
+
+
+.spanHome {
+    display: none;
 }
