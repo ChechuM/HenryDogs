@@ -22,3 +22,12 @@
     background-color: var(--primario);
     color: red
 }
+
+.newDog {
+    border: none;
+    cursor: pointer;
+}
+
+.newDog:hover .hide {
+    display: inline;
+}

@@ -1,10 +1,13 @@
 import './Boceto.css';
 import defaultIcon from '../Form/defaultIcon';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faDog } from '@fortawesome/free-solid-svg-icons';
+
 
 
 export default function Boceto(props) {
 
-    const { input, errors } = props;
+    const { input, errors, handleSubmit } = props;
 
     return (
         <div className="bocetoDiv">
@@ -32,6 +35,8 @@ export default function Boceto(props) {
                 }
                 <p className='spanBoceto'><span className="title">Life Span:</span> {input.span} years</p>
             </div>
+
+            <button className='newDog' onClick={handleSubmit}><Icon icon={faDog} style={{ color: "#005b47", }} size='2xl' /><span className="hide">  Create New Dog! </span>  </button>
         </div>
     )
 }

@@ -1,20 +1,14 @@
 import './Form.css';
 import { React } from 'react';
 import { useSelector } from 'react-redux';
-// import * as actions from '../../redux/actions';
-
-// export function validate(temperament) {
-//     let errors = {};
-//     if (temperament.length === 0) errors.temperament = 'Please pick at least one temperament from the list';
-//     return errors;
-// }
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
+import { faDog } from '@fortawesome/free-solid-svg-icons';
 
 export default function Form(props) {
-    // const dispatch = useDispatch();
 
     const temperaments = useSelector(store => store.temperaments)
 
-    const { input, handleInputChange, handleSubmit, setInput } = props;
+    const { input, handleInputChange, handleSubmit, setInput, setErrors, validate } = props;
 
     const handleTemps = (event) => {
         let { value, checked } = event.target;
@@ -30,12 +24,12 @@ export default function Form(props) {
                 temperaments: input.temperaments.filter((temp) => temp !== value)
             })
         }
-        // setErrors(
-        //     validate({
-        //         ...input,
-        //         temperaments: value
-        //     })
-        // )
+        setErrors(
+            validate({
+                ...input,
+                temperaments: value
+            })
+        )
     }
 
     return (
@@ -128,7 +122,7 @@ export default function Form(props) {
                 </div>
 
                 <hr />
-                <button className='newDog' onClick={handleSubmit}>Create New Dog!</button>
+                <button className='newDog' onClick={handleSubmit}><Icon icon={faDog} style={{ color: "#005b47", }} size='2xl' /> <span className="hide"> Create New Dog! </span> </button>
 
             </form>
         </div>

@@ -89,12 +89,8 @@ export default function Create() {
 
     return (
         <div className="bothDiv">
-            <Form handleInputChange={handleInputChange} input={input} setInput={setInput}
-                errors={errors} setErrors={setErrors}
-                handleSubmit={handleSubmit} className='form' />
-            <Boceto input={input}
-                errors={errors}
-                setInput={setInput} className='boceto' />
+            <Form handleInputChange={handleInputChange} input={input} setInput={setInput} errors={errors} setErrors={setErrors} handleSubmit={handleSubmit} validate={validate} className='form' />
+            <Boceto input={input} errors={errors} setInput={setInput} handleSubmit={handleSubmit} className='boceto' />
         </div>
     )
 
