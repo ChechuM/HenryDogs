@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as actions from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import dogButton from './dogButton.png'
+import fetch from './fetch.png';
 
 export default function SearchBar(props) {
     const navigate = useNavigate();
@@ -28,11 +29,11 @@ export default function SearchBar(props) {
 
     return (
         <div className="barra">
-            <button className="newdog" onClick={() => { navigate('/dogs/newDog') }}><img src={dogButton} alt="" className="dogButton" />
+            <button className="newdog" onClick={() => { navigate('/dogs/newDog') }}><img src={dogButton} alt="dogButton" className="dogButton" /> Let's Create
             </button><span> </span>
             <input type='search' className="input" value={input.name} onChange={handleSearch} placeholder=' Search your dog by name' />
             <span> </span>
-            <button className="onSearch" onClick={() => onSearch(input)}>Search</button> <span> </span>
+            <button className="onSearch" onClick={() => onSearch(input)}>Fetch! <img src={fetch} alt="fetch" className="fetch" /> </button> <span> </span>
             <button className='noFilter' onClick={() => backToAll()}>No filter</button>
         </div>
     )
