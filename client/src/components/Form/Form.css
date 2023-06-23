@@ -50,8 +50,15 @@
     background-color: var(--secundario);
     border-radius: 8px;
     padding-left: 0.5rem;
-    cursor:
-    ;
+    cursor: pointer
+}
+
+.dogCreate {
+    height: 2.5rem;
+}
+
+.newDog {
+    border-radius: 15px;
 }
 
 .tempP:hover {

@@ -10,7 +10,13 @@
     font-size: medium;
     background-color: var(--buttons);
     color: var(--highlights);
-    border: none
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dogButton {
+    height: 1.6rem;
 }
 
 .input {

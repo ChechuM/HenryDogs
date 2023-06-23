@@ -1,7 +1,6 @@
 import './Boceto.css';
 import defaultIcon from '../Form/defaultIcon';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
+import dog from '../Create/dog.png';
 
 
 
@@ -36,7 +35,7 @@ export default function Boceto(props) {
                 <p className='spanBoceto'><span className="title">Life Span:</span> {input.span} years</p>
             </div>
 
-            <button className='newDog' onClick={handleSubmit}><Icon icon={faDog} style={{ color: "#005b47", }} size='2xl' /><span className="hide">  Create New Dog! </span>  </button>
+            <button className='newDog' onClick={handleSubmit}> <img src={dog} alt="dog" className="dogCreate" /> <span className="hide">  Create New Dog! </span>  </button>
         </div>
     )
 }

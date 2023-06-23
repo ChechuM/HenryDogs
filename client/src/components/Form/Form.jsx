@@ -1,8 +1,7 @@
 import './Form.css';
 import { React } from 'react';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
+import dog from '../Create/dog.png';
 
 export default function Form(props) {
 
@@ -122,7 +121,7 @@ export default function Form(props) {
                 </div>
 
                 <hr />
-                <button className='newDog' onClick={handleSubmit}><Icon icon={faDog} style={{ color: "#005b47", }} size='2xl' /> <span className="hide"> Create New Dog! </span> </button>
+                <button className='newDog' onClick={handleSubmit}> <img src={dog} alt="dog" className="dogCreate" /> <span className="hide"> Create New Dog! </span> </button>
 
             </form>
         </div>

@@ -19,6 +19,8 @@ import * as actions from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import caretLeft from './caretLeft.png';
+import caretRight from './caretRight.png';
 
 export default function Home(props) {
     const dogShown = useSelector(store => store.dogShown)
@@ -55,7 +57,7 @@ export default function Home(props) {
             <span>{dogShown.length}</span>
             <div className="home">
 
-                <div className="prevBar" onClick={() => prevHandler()}><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretLeft} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
+                <div className="prevBar" onClick={() => prevHandler()}> <img src={caretLeft} alt="" className="imgCaret" />  </div>
 
                 <div className='cards'>
                     <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
@@ -67,7 +69,7 @@ export default function Home(props) {
     <button onClick={() => nextHandler()} className='nextBtn'> next </button>
 </div> */}
 
-                <div className="nextBar" onClick={() => nextHandler()}>  <Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /><Icon icon={faCaretRight} beat style={{ color: "#cba16f", }} size='2xl' /> </div>
+                <div className="nextBar" onClick={() => nextHandler()}> <img src={caretRight} alt="" className="imgCaret" />   </div>
             </div>
         </div>
     )

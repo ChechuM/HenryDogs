@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as actions from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
+import dogButton from './dogButton.png'
 
 export default function SearchBar(props) {
     const navigate = useNavigate();
@@ -29,8 +28,7 @@ export default function SearchBar(props) {
 
     return (
         <div className="barra">
-            <button className="newdog" onClick={() => { navigate('/dogs/newDog') }}> <Icon icon={faDog} style={{ color: "#005b47", }} size='2xl' /> Create a Dog
-                {/* <Icon icon={faHome} /> */}
+            <button className="newdog" onClick={() => { navigate('/dogs/newDog') }}><img src={dogButton} alt="" className="dogButton" />
             </button><span> </span>
             <input type='search' className="input" value={input.name} onChange={handleSearch} placeholder=' Search your dog by name' />
             <span> </span>
