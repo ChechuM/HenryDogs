@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router, response } = require('express');
 const dogRouter = Router();
 const { getDogs, createDog, getDogById, findDogByName } = require('../controllers/dogControllers');
 const { getDogImg } = require('../controllers/getDogImg');
@@ -17,55 +17,62 @@ const headers = {
 // Debe poder buscarlo independientemente de mayúsculas o minúsculas.
 // Si no existe la raza, debe mostrar un mensaje adecuado.
 // Debe buscar tanto los de la API como los de la base de datos.
+
 dogRouter.get('/name', async (req, res) => {
     const { name } = req.query;
+    console.log('ruta', name)
     let searchName = name.toLowerCase();
     let dogArr = [];
 
     // BDD
-    // await findDogByName(searchName)
-    //     .then((DBName) => {
-    //         console.log('esto es DBName', DBName)
-    //         DBName.forEach((dog) => dogArr.push(dog))
-    //     })
+    // TODO
+    let unperro = await findDogByName(searchName) // bancame ya vuelvo
+    console.log('acaa querés', unperro)
 
-    // Api
+    unperro.map((perro) => {
+        let arrWeight = perro.weight.split(' ');
+        let minWeight = arrWeight[0];
+        perro.dataValues.minWeight = minWeight
+        dogArr.push(perro.dataValues)
+    })
+
     try {
-        await axios(URLbreeds + '/search?q=' + searchName, headers)
-            .then((response) => {
-                let results = response.data;
-                return results
-            })
-            .then((results) => {
-                results.forEach(async (res) => {
-                    if (res.reference_image_id) {
-                        let arrWeight = res.weight.metric.split(' ');
-                        let minWeight = arrWeight[0]
-                        let dog = {
-                            id: res.id,
-                            name: res.name,
-                            weight: res.weight.metric + ' kg.',
-                            height: res.height.metric + ' cm.',
-                            minWeight: minWeight,
-                            span: res.life_span,
-                            temperament: res.temperament,
-                            image: await getDogImg(res.reference_image_id)
-                        }
-                        console.log('this is the dog', dog)
-                        dogArr.push(dog)
-                    }
-                })
-                return dogArr
-            })
-            .then((dogArr) => {
-                console.log('esto es el array al final', dogArr)
-                res.status(200).json(dogArr)
-            })
+        const response = await axios.get(`${URLbreeds}/search?q=${searchName}`, headers);
+        console.log('response', response.data);
+
+        const results = response.data;
+        for (const res of results) {
+            let arrWeight = res.weight.metric.split(' ');
+            let minWeight = arrWeight[0];
+            let image = ''
+            if (res.reference_image_id) {
+                image = await getDogImg(res.reference_image_id);
+            }
+            let dog = {
+                id: res.id,
+                name: res.name,
+                weight: res.weight.metric + ' kg.',
+                height: res.height.metric + ' cm.',
+                minWeight: minWeight,
+                span: res.life_span,
+                temperament: res.temperament,
+                image: image
+            };
+            console.log('this is the dog', dog);
+            dogArr.push(dog);
+            console.log('dogArray', dogArr);
+            // if (res.reference_image_id) {
+
+            // }
+        }
+        console.log('final dogArr', dogArr);
+        res.status(200).json(dogArr);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-    catch (error) {
-        res.status(400).json({ error: error.message })
-    }
-})
+});
+
+
 
 // 📍 GET | /dogs/:idRaza
 // Esta ruta obtiene el detalle de una raza específica. Es decir que devuelve un objeto con la información pedida en el detalle de un perro.
@@ -117,7 +124,13 @@ dogRouter.get('/', async (req, res) => {
     try {
         let arrDogs = [];
         let dogsDB = await getDogs();
-        dogsDB.forEach((dog) => arrDogs.push(dog))
+        dogsDB.map((perro) => {
+            let arrWeight = perro.weight.split(' ');
+            let minWeight = arrWeight[0];
+            perro.minWeight = minWeight
+            arrDogs.push(perro)
+        })
+
         await axios.get(URLbreeds, headers)
             .then((response) => {
                 let data = response.data;

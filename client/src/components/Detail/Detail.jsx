@@ -12,6 +12,7 @@ import './Detail.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import defaultIcon from '../Form/defaultIcon';
+import { setLoading } from '../../redux/actions';
 
 export default function Detail() {
     const { idBreed } = useParams();
@@ -27,6 +28,7 @@ export default function Detail() {
     });
 
     useEffect(() => {
+        setLoading(true)
         fetch(`http://localhost:3001/dogs/${idBreed}`)
             .then((response) => response.json())
             .then((dog) => {
@@ -40,7 +42,9 @@ export default function Detail() {
                     height: dog.height,
                     weight: dog.weight
                 })
+                setLoading(false)
             })
+
     }, [idBreed])
 
     return (

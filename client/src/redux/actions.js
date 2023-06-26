@@ -8,16 +8,50 @@ export const FILTER_BY_TEMPERAMENT = 'FILTER_BY_TEMPERAMENT'
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
+export const SET_LOADING = 'SET_LOADING';
+export const GET_TEMPS_DB = 'GET_TEMPS_DB'
+// export const GET_DOG_BY_ID = 'GET_DOG_BY_ID';
 
-export const getAllDogs = () => {
-    return async function (dispatch) {
+export const getTempsDB = () => async dispatch => {
+    try {
+        let response = await axios.get('http://localhost:3001/temperaments/db')
+
+        // dispatch({
+        //     type: SET_LOADING,
+        //     payload: ""
+        // })
+        let payload = response.data.map((temp) => {
+            return temp.name
+        })
+
+        return dispatch(
+            {
+                type: GET_TEMPS_DB,
+                payload: payload
+            }
+        )
+    }
+    catch (error) {
+        return error
+    }
+}
+export const getAllDogs = () => async dispatch => {
+    try {
         let response = await axios.get('http://localhost:3001/dogs')
+        // es lo mismo que var response = await axios.get("/dogs") ?????????
+        dispatch({
+            type: SET_LOADING,
+            payload: ""
+        })
         return dispatch(
             {
                 type: GET_ALL_DOGS,
                 payload: response.data
             }
         )
+    }
+    catch (error) {
+        return error
     }
 }
 
@@ -34,8 +68,10 @@ export const getAllTemperaments = () => {
 }
 
 export const getDogsByName = (dog) => {
+    console.log('getDogByName in actions', dog)
     return async function (dispatch) {
         let response = await axios.get(`http://localhost:3001/dogs/name?name=${dog}`)
+        console.log('response de getDogsByName', response.data)
         return dispatch(
             {
                 type: GET_DOGS_BY_NAME,
@@ -76,6 +112,7 @@ export const filterByTemperament = (temperament) => {
 }
 
 export const filterByOrigin = (origin) => {
+    console.log('recibo el origin en filterByOrigin: origin:', origin)
     return {
         type: FILTER_BY_ORIGIN,
         payload: origin
@@ -93,5 +130,12 @@ export const orderByWeight = (order) => {
     return {
         type: ORDER_BY_WEIGHT,
         payload: order
+    }
+}
+
+export const setLoading = (payload) => {
+    return {
+        type: SET_LOADING,
+        payload: payload
     }
 }

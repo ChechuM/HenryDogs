@@ -1,13 +1,20 @@
-import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, filterByOrigin } from "./actions";
+import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, SET_LOADING, GET_TEMPS_DB } from "./actions";
 
 const initialState = {
     allDogs: [],
     dogShown: [],
-    temperaments: []
+    temperaments: [],
+    loading: "Loading..."
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_TEMPS_DB:
+            return {
+                ...state,
+                temperaments: [...action.payload]
+            }
+
         case GET_ALL_DOGS:
             return {
                 ...state,
@@ -23,6 +30,7 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case GET_DOGS_BY_NAME:
+            console.log('reduciendo')
             return {
                 ...state,
                 dogShown: [...action.payload]
@@ -31,7 +39,6 @@ const rootReducer = (state = initialState, action) => {
         case ADD_DOG:
             return {
                 ...state,
-                dogShown: [...state.dogShown, action.payload],
                 allDogs: [...state.allDogs, action.payload]
             }
 
@@ -40,18 +47,6 @@ const rootReducer = (state = initialState, action) => {
             if (action.payload === 'Api') filteredByOrigin = state.allDogs.filter(dog => typeof dog.id === 'number')
             if (action.payload === 'User') filteredByOrigin = state.allDogs.filter(dog => typeof dog.id === 'string')
             if (action.payload === 'selectOrigin') filteredByOrigin = state.allDogs
-
-            // let uniqueDogShown = []
-
-            // for (let i = 0; i < filteredByOrigin.length; i++) {
-            //     let value = filteredByOrigin[i];
-            //     if (uniqueDogShown.indexOf(value) !== -1) {
-            //         uniqueDogShown.push(value)
-            //     }
-            //     else return;
-            // }
-
-            // console.log('este es el array de unicos', uniqueDogShown)
 
             return {
                 ...state,
@@ -75,12 +70,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 dogShown:
                     action.payload === 'ascName'
-                        ? state.dogShown.sort((a, b) => a.name.localeCompare(b.name))
-                        : state.dogShown.sort((a, b) => b.name.localeCompare(a.name))
+                        ? state.dogShown.toSorted((a, b) => a.name.localeCompare(b.name))
+                        : state.dogShown.toSorted((a, b) => b.name.localeCompare(a.name))
             }
 
         case ORDER_BY_WEIGHT:
-            console.log('esto es el action.payload', action.payload)
 
             return {
                 ...state,
@@ -88,6 +82,13 @@ const rootReducer = (state = initialState, action) => {
                     ? state.dogShown.toSorted((a, b) => a.minWeight - b.minWeight)
                     : state.dogShown.toSorted((a, b) => b.minWeight - a.minWeight)
             }
+
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: (action.payload)
+            }
+
 
         default: return {
             ...state

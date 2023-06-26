@@ -19,6 +19,7 @@ export default function SearchBar(props) {
     }
 
     const onSearch = (name) => {
+        console.log('onSearch', name)
         if (!name) return;
         dispatch(actions.getDogsByName(name))
     }

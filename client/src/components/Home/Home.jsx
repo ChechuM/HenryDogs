@@ -17,18 +17,23 @@ import Cards from '../Cards/Cards'
 import { React, useEffect, useState } from 'react';
 import * as actions from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import caretLeft from './caretLeft.png';
 import caretRight from './caretRight.png';
+import loadingDog from '../../img/loadingDog.gif';
 
 export default function Home(props) {
     const dogShown = useSelector(store => store.dogShown)
+    const loading = useSelector(state => state.loading)
     const dispatch = useDispatch();
 
+
     useEffect(() => {
-        dispatch(actions.getAllDogs())
-    }, [])
+        dispatch(actions.getAllDogs());
+        dispatch(actions.getTempsDB())
+        return () => {
+            dispatch(actions.setLoading(false))
+        }
+    }, [dispatch])
 
     // PAGINADO: creo otro estado local que setee el nro de página inicial y que luego permita cambiarlo
 
@@ -51,26 +56,29 @@ export default function Home(props) {
     }
 
     return (
-        <div className="test">
-            <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
-            <hr />
-            <span>{dogShown.length}</span>
-            <div className="home">
+        <div>
+            {(!loading) ? <div>
+                <div className="test">
+                    <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
+                    <hr />
+                    <span>{dogShown.length}</span>
+                    <div className="home">
 
-                <div className="prevBar" onClick={() => prevHandler()}> <img src={caretLeft} alt="" className="imgCaret" />  </div>
+                        <div className="prevBar" onClick={() => prevHandler()}> <img src={caretLeft} alt="" className="imgCaret" />  </div>
 
-                <div className='cards'>
-                    <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
+                        <div className='cards'>
+                            <Cards currentPg={currentPg} ITEMS_PER_PAGE={ITEMS_PER_PAGE} />
+                        </div>
+
+                        <div className="nextBar" onClick={() => nextHandler()}> <img src={caretRight} alt="" className="imgCaret" />   </div>
+                    </div>
                 </div>
-
-                {/* <div className='pgHandlers'>
-    <button onClick={() => prevHandler()} className='prevBtn'> prev </button>
-    <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
-    <button onClick={() => nextHandler()} className='nextBtn'> next </button>
-</div> */}
-
-                <div className="nextBar" onClick={() => nextHandler()}> <img src={caretRight} alt="" className="imgCaret" />   </div>
             </div>
+                : <div>
+                    <img src={loadingDog} alt='Loading resources' />
+                    <p>{loading}</p>
+                </div>
+            }
         </div>
     )
 }

@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const tempRouter = Router();
-const { saveTemperament, checkTemperament } = require('../controllers/tempControllers');
+const { saveTemperament, checkTemperament, getTemperaments } = require('../controllers/tempControllers');
 const axios = require('axios');
+const Temperament = require('../models/Temperament');
 const { API_KEY } = process.env;
 const URLbreeds = "https://api.thedogapi.com/v1/breeds"
 const headers = {
@@ -9,6 +10,18 @@ const headers = {
         "x-api-key": API_KEY,
     },
 };
+
+
+tempRouter.get('/db', async (req, res) => {
+    try {
+        const temps = await getTemperaments();
+        res.status(200).json(temps)
+    }
+    catch (error) {
+        console.log('error', error.message)
+        res.status(400).json({ error: error.message })
+    }
+})
 
 
 // 📍 GET | /temperaments

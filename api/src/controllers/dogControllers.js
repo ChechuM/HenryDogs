@@ -3,13 +3,16 @@ const { Dogs_Temperaments } = require('../db');
 const { Op } = require("sequelize");
 
 const findDogByName = async (name) => {
-    const results = await Dog.findAll({ include: Temperament }, {
-        where: {
-            name: { [Op.iLike]: `%${name}%` }
-        }
-    });
-    if (results.length > 0) return results;
-    else return (`The Dog called ${name} does not exist on the DataBase`);
+    console.log('el nombre en findDogByName', name)
+    const results = await Dog.findAll({ include: Temperament });
+    console.log('los results en el finDogByName', results)
+    let namedDogs = []
+    results.map((dog) => {
+        if (dog.name === name) return namedDogs.push(dog)
+        // usar substring o include
+    })
+    console.log('el array de los perros filtrados', namedDogs)
+    return namedDogs;
 }
 
 const getDogById = async (id) => {
