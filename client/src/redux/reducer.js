@@ -1,10 +1,26 @@
-import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, SET_LOADING, GET_TEMPS_DB } from "./actions";
+import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, SET_LOADING, GET_TEMPS_DB, INTERSECT } from "./actions";
 
 const initialState = {
     allDogs: [],
-    dogShown: [],
+    byTemperament: [],
+    byOrigin: [],
+    dogShown: [], // éste es el que se renderiza
     temperaments: [],
     loading: "Loading..."
+}
+
+function intersection(arr1, arr2, arr3) {
+    // HERMOSO CODE Q ENCONTRE QUE BUSCA INTERESECCIONES -> los ordena por como aparecen en el primero
+    // var array1 = [666, "Lorem", "quick", "ipsum", "dolor"],
+    // array2 = ["Lorem", "ipsum", 666, "quick", "brown", "foo"],
+    // array3 = ["quick","Jumps",666, "Over", "Lazy", "ipsum","quick", "Lorem"],
+    // array4 = [1337, 420, 666, "Lorem","quick","ipsum"],
+    // data = [array1, array2, array3, array4],
+    // result = data.reduce((a, b) => a.filter(c => b.includes(c)));
+    // console.log(result);
+    var data = [arr1, arr2, arr3]
+    var result = data.reduce((a, b) => a.filter(c => b.includes(c)));
+    return result
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -18,9 +34,10 @@ const rootReducer = (state = initialState, action) => {
         case GET_ALL_DOGS:
             return {
                 ...state,
+                byTemperament: [...action.payload],
+                byOrigin: [...action.payload],
                 dogShown: [...action.payload],
-                allDogs: [...state.allDogs, ...action.payload]
-                // esto está bien?????
+                allDogs: [...action.payload]
             }
 
         case GET_ALL_TEMPERAMENTS:
@@ -30,7 +47,6 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case GET_DOGS_BY_NAME:
-            console.log('reduciendo')
             return {
                 ...state,
                 dogShown: [...action.payload]
@@ -50,11 +66,17 @@ const rootReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                dogShown: filteredByOrigin
+                byOrigin: filteredByOrigin
             }
 
         case FILTER_BY_TEMPERAMENT:
             let filterByTemperament = [];
+            if (action.payload === 'selectTemperament') {
+                return {
+                    ...state,
+                    byTemperament: state.allDogs
+                }
+            }
             state.allDogs.forEach((dog) => {
                 if (dog.temperament && dog.temperament.includes(action.payload)) {
                     filterByTemperament.push(dog)
@@ -62,25 +84,25 @@ const rootReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                dogShown: filterByTemperament
+                byTemperament: filterByTemperament
             }
 
         case ORDER_BY_NAME:
             return {
                 ...state,
-                dogShown:
+                allDogs:
                     action.payload === 'ascName'
-                        ? state.dogShown.toSorted((a, b) => a.name.localeCompare(b.name))
-                        : state.dogShown.toSorted((a, b) => b.name.localeCompare(a.name))
+                        ? state.allDogs.toSorted((a, b) => a.name.localeCompare(b.name))
+                        : state.allDogs.toSorted((a, b) => b.name.localeCompare(a.name))
             }
 
         case ORDER_BY_WEIGHT:
 
             return {
                 ...state,
-                dogShown: action.payload === 'ascWeight'
-                    ? state.dogShown.toSorted((a, b) => a.minWeight - b.minWeight)
-                    : state.dogShown.toSorted((a, b) => b.minWeight - a.minWeight)
+                allDogs: action.payload === 'ascWeight'
+                    ? state.allDogs.toSorted((a, b) => a.minWeight - b.minWeight)
+                    : state.allDogs.toSorted((a, b) => b.minWeight - a.minWeight)
             }
 
         case SET_LOADING:
@@ -89,12 +111,16 @@ const rootReducer = (state = initialState, action) => {
                 loading: (action.payload)
             }
 
+        case INTERSECT:
+            let interseccionado = intersection(state.allDogs, state.byTemperament, state.byOrigin)
+            return {
+                ...state,
+                dogShown: interseccionado
+            }
 
         default: return {
             ...state
         };
-
-
     }
 };
 

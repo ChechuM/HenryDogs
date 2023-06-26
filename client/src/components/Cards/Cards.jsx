@@ -4,26 +4,35 @@ import { useSelector } from 'react-redux';
 
 export default function Cards(props) {
     const dogShown = useSelector(store => store.dogShown)
+    console.log('dogShown en Cards', dogShown, dogShown.length)
     // Paginado
     const { currentPg } = props;
     const { ITEMS_PER_PAGE } = props;
 
     let min = currentPg * ITEMS_PER_PAGE
     let max = min + ITEMS_PER_PAGE
+
     return (
         <div className="divCards">
             {
-                dogShown.map((d, i) => {
-                    if (i >= min && i <= max) {
-                        return < Card
-                            id={d.id}
-                            name={d.name}
-                            image={d.image}
-                            temperament={d.temperament}
-                            weight={d.weight}
-                        />
-                    }
-                })
+                (dogShown.length) ? // rederizado condicional activado!
+
+                    dogShown.map((d, i) => {
+                        if (i >= min && i <= max) {
+                            return < Card
+                                id={d.id}
+                                name={d.name}
+                                image={d.image}
+                                temperament={d.temperament}
+                                weight={d.weight}
+                            />
+                        }
+                    })
+                    : <div>
+                        <h1> One minute, I'm searching ...</h1>
+                        <img src='https://media.tenor.com/GTS2P-7x_ssAAAAM/funny-dog.gif' alt='what?' />
+                        <h2>I'm sorry, that doesn't exist</h2>
+                    </div>
             }
         </div>
     )

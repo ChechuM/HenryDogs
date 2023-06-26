@@ -60,8 +60,6 @@ export default function Home(props) {
             {(!loading) ? <div>
                 <div className="test">
                     <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
-                    <hr />
-                    <span>{dogShown.length}</span>
                     <div className="home">
 
                         <div className="prevBar" onClick={() => prevHandler()}> <img src={caretLeft} alt="" className="imgCaret" />  </div>
@@ -72,6 +70,7 @@ export default function Home(props) {
 
                         <div className="nextBar" onClick={() => nextHandler()}> <img src={caretRight} alt="" className="imgCaret" />   </div>
                     </div>
+
                 </div>
             </div>
                 : <div>

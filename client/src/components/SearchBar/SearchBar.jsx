@@ -24,10 +24,6 @@ export default function SearchBar(props) {
         dispatch(actions.getDogsByName(name))
     }
 
-    const backToAll = () => {
-        dispatch(actions.getAllDogs())
-    }
-
     return (
         <div className="barra">
             <button className="newdog" onClick={() => { navigate('/dogs/newDog') }}><img src={dogButton} alt="dogButton" className="dogButton" /> Let's Create
@@ -35,7 +31,6 @@ export default function SearchBar(props) {
             <input type='search' className="input" value={input.name} onChange={handleSearch} placeholder=' Search your dog by name' />
             <span> </span>
             <button className="onSearch" onClick={() => onSearch(input)}>Fetch! <img src={fetch} alt="fetch" className="fetch" /> </button> <span> </span>
-            <button className='noFilter' onClick={() => backToAll()}>No filter</button>
         </div>
     )
 }

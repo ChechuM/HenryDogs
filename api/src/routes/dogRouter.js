@@ -1,4 +1,4 @@
-const { Router, response } = require('express');
+const { Router } = require('express');
 const dogRouter = Router();
 const { getDogs, createDog, getDogById, findDogByName } = require('../controllers/dogControllers');
 const { getDogImg } = require('../controllers/getDogImg');
@@ -20,14 +20,11 @@ const headers = {
 
 dogRouter.get('/name', async (req, res) => {
     const { name } = req.query;
-    console.log('ruta', name)
     let searchName = name.toLowerCase();
     let dogArr = [];
 
     // BDD
-    // TODO
-    let unperro = await findDogByName(searchName) // bancame ya vuelvo
-    console.log('acaa querés', unperro)
+    let unperro = await findDogByName(searchName)
 
     unperro.map((perro) => {
         let arrWeight = perro.weight.split(' ');
@@ -36,11 +33,11 @@ dogRouter.get('/name', async (req, res) => {
         dogArr.push(perro.dataValues)
     })
 
+    // API
     try {
         const response = await axios.get(`${URLbreeds}/search?q=${searchName}`, headers);
-        console.log('response', response.data);
-
         const results = response.data;
+
         for (const res of results) {
             let arrWeight = res.weight.metric.split(' ');
             let minWeight = arrWeight[0];
@@ -58,14 +55,8 @@ dogRouter.get('/name', async (req, res) => {
                 temperament: res.temperament,
                 image: image
             };
-            console.log('this is the dog', dog);
             dogArr.push(dog);
-            console.log('dogArray', dogArr);
-            // if (res.reference_image_id) {
-
-            // }
         }
-        console.log('final dogArr', dogArr);
         res.status(200).json(dogArr);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -73,12 +64,12 @@ dogRouter.get('/name', async (req, res) => {
 });
 
 
-
 // 📍 GET | /dogs/:idRaza
 // Esta ruta obtiene el detalle de una raza específica. Es decir que devuelve un objeto con la información pedida en el detalle de un perro.
 // La raza es recibida por parámetro (ID).
 // Tiene que incluir los datos de los temperamentos asociadas a esta raza.
 // Debe funcionar tanto para los perros de la API como para los de la base de datos.
+
 dogRouter.get('/:idBreed', async (req, res) => {
     const { idBreed } = req.params;
     // BDD
@@ -120,6 +111,7 @@ dogRouter.get('/:idBreed', async (req, res) => {
 
 // 📍 GET | /dogs
 // Obtiene un arreglo de objetos, donde cada objeto es la raza de un perro.
+
 dogRouter.get('/', async (req, res) => {
     try {
         let arrDogs = [];
@@ -178,7 +170,6 @@ dogRouter.post('/newDog', (req, res) => {
         res.status(400).json({ error: error.message })
     }
 })
-
 
 
 module.exports = { dogRouter }

@@ -9,8 +9,22 @@ export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 export const SET_LOADING = 'SET_LOADING';
-export const GET_TEMPS_DB = 'GET_TEMPS_DB'
-// export const GET_DOG_BY_ID = 'GET_DOG_BY_ID';
+export const GET_TEMPS_DB = 'GET_TEMPS_DB';
+export const INTERSECT = 'INTERSECT'
+
+
+export const intersect = () => async dispatch => {
+    try {
+        return dispatch(
+            {
+                type: INTERSECT,
+            }
+        )
+    }
+    catch (error) {
+        return error
+    }
+}
 
 export const getTempsDB = () => async dispatch => {
     try {
@@ -112,7 +126,6 @@ export const filterByTemperament = (temperament) => {
 }
 
 export const filterByOrigin = (origin) => {
-    console.log('recibo el origin en filterByOrigin: origin:', origin)
     return {
         type: FILTER_BY_ORIGIN,
         payload: origin
