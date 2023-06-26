@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, SET_LOADING, GET_TEMPS_DB, INTERSECT } from "./actions";
+import { GET_ALL_DOGS, GET_ALL_TEMPERAMENTS, GET_DOGS_BY_NAME, ADD_DOG, FILTER_BY_ORIGIN, FILTER_BY_TEMPERAMENT, ORDER_BY_NAME, ORDER_BY_WEIGHT, SET_LOADING, GET_TEMPS_DB, INTERSECT, DELETE_DOG } from "./actions";
 
 const initialState = {
     allDogs: [],
@@ -25,6 +25,15 @@ function intersection(arr1, arr2, arr3) {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        case DELETE_DOG:
+            const notDeleted = state.allDogs.filter(dog => dog.id !== action.payload)
+
+            return {
+                ...state,
+                allDogs: notDeleted,
+                dogShown: notDeleted
+            }
+
         case GET_TEMPS_DB:
             return {
                 ...state,

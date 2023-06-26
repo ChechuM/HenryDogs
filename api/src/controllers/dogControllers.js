@@ -76,11 +76,12 @@ const createDog = async (dog) => {
     return newDog;
 }
 
-const deleteDog = async (dog) => {
+const deleteDog = async (id) => {
+    // voy a eliminar el perro de la DB
     await Dog.destroy({
-        where: { id: dog.id }, include: [{ model: Temperament }]
+        where: { id: id },
     });
-    return `The dog with id ${dog.id} was removed from the DataBase`
+    return `The dog with id ${id} was removed from the DataBase`
 }
 
 module.exports = { getDogs, createDog, getDogById, findDogByName, deleteDog }

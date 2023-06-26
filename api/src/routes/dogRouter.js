@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const dogRouter = Router();
-const { getDogs, createDog, getDogById, findDogByName } = require('../controllers/dogControllers');
+const { getDogs, createDog, getDogById, findDogByName, deleteDog } = require('../controllers/dogControllers');
 const { getDogImg } = require('../controllers/getDogImg');
 const axios = require('axios');
 const { API_KEY } = process.env;
@@ -171,5 +171,18 @@ dogRouter.post('/newDog', (req, res) => {
     }
 })
 
+
+// Quiero crear una ruta delete
+dogRouter.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        let noDog = deleteDog(id)
+        res.status(200).json(noDog)
+    }
+    catch (error) {
+        console.log('el error', error)
+        res.status(400).json({ error: error.message })
+    }
+})
 
 module.exports = { dogRouter }

@@ -10,8 +10,26 @@ export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 export const SET_LOADING = 'SET_LOADING';
 export const GET_TEMPS_DB = 'GET_TEMPS_DB';
-export const INTERSECT = 'INTERSECT'
+export const INTERSECT = 'INTERSECT';
+export const DELETE_DOG = 'DELETE_DOG'
 
+
+export const deleteDog = (id) => async dispatch => {
+    //si es un perro de la DB pego a la ruta delete 
+    if (typeof id === 'string') await axios.delete(`http://localhost:3001/dogs/${id}`)
+    // además despacho la action para eliminar el perro del estado global
+    try {
+        return dispatch(
+            {
+                type: DELETE_DOG,
+                payload: id
+            }
+        )
+    }
+    catch (error) {
+        return error
+    }
+}
 
 export const intersect = () => async dispatch => {
     try {
@@ -29,11 +47,6 @@ export const intersect = () => async dispatch => {
 export const getTempsDB = () => async dispatch => {
     try {
         let response = await axios.get('http://localhost:3001/temperaments/db')
-
-        // dispatch({
-        //     type: SET_LOADING,
-        //     payload: ""
-        // })
         let payload = response.data.map((temp) => {
             return temp.name
         })
