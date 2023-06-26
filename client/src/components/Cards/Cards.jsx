@@ -18,7 +18,7 @@ export default function Cards(props) {
                 (dogShown.length) ? // rederizado condicional activado!
 
                     dogShown.map((d, i) => {
-                        if (i >= min && i <= max) {
+                        if (i > min && i <= max) {
                             return < Card
                                 id={d.id}
                                 name={d.name}

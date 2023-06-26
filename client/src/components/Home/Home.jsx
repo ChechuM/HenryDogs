@@ -40,13 +40,12 @@ export default function Home() {
 
     const [currentPg, setCurrentPg] = useState(0);
 
-    const ITEMS_PER_PAGE = 7; // cuántos items quiero mostrar por página -1 
+    const ITEMS_PER_PAGE = 8;
 
     const nextHandler = () => {
         // éste handler va a cambiar el nro de página + 1
-        let top = (dogShown.length / ITEMS_PER_PAGE)
-        if (currentPg < top) setCurrentPg((currentPg) => currentPg + 1);
-        else return
+        if (currentPg + 1 >= Math.ceil(dogShown.length / ITEMS_PER_PAGE)) return
+        setCurrentPg((currentPg) => currentPg + 1);
     };
 
     const prevHandler = () => {
@@ -59,7 +58,7 @@ export default function Home() {
         <div>
             {(!loading) ? <div>
                 <div className="test">
-                    <span> page {currentPg + 1} from {Math.floor(dogShown.length / 15) + 1} </span>
+                    <span> page {currentPg + 1} from {Math.ceil(dogShown.length / ITEMS_PER_PAGE)} </span>
                     <div className="home">
 
                         <div className="prevBar" onClick={() => prevHandler()}> <img src={caretLeft} alt="" className="imgCaret" />  </div>
