@@ -1,13 +1,11 @@
 const { Dog, Temperament } = require('../db');
 const { Dogs_Temperaments } = require('../db');
-const { Op } = require("sequelize");
 
 const findDogByName = async (name) => {
     const results = await Dog.findAll({ include: Temperament });
     let namedDogs = []
     results.map((dog) => {
-        if (dog.name === name) return namedDogs.push(dog)
-        // usar substring o include
+        if (dog.name.toLowerCase().includes(name)) return namedDogs.push(dog)
     })
     return namedDogs;
 }
@@ -54,7 +52,6 @@ const getDogs = async () => {
             span: dog.span,
             temperament: temperament.join(', ')
         }
-
         dogsFinal.push(perro);
     })
 
@@ -72,11 +69,18 @@ const createDog = async (dog) => {
     // crea un array con los temperamentos enviados ->
     let tempArr = temperament.split(', ')
 
-    // para cada temperamento lo agrega a la BDD y a la tabla intermedia
+    // para cada temperamento lo agrega a la tabla intermedia en la BDD
     tempArr.forEach(async temperament => {
         await newDog.addTemperaments(temperament, { through: Dogs_Temperaments })
     });
     return newDog;
 }
 
-module.exports = { getDogs, createDog, getDogById, findDogByName }
+const deleteDog = async (dog) => {
+    await Dog.destroy({
+        where: { id: dog.id }, include: [{ model: Temperament }]
+    });
+    return `The dog with id ${dog.id} was removed from the DataBase`
+}
+
+module.exports = { getDogs, createDog, getDogById, findDogByName, deleteDog }

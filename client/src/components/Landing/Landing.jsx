@@ -5,14 +5,11 @@
 
 import './Landing.css';
 import { React } from 'react';
-import * as actions from '../../redux/actions';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-export default function Landing(props) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+export default function Landing() {
 
+    const navigate = useNavigate();
     const getStarted = () => {
         //dispatch(actions.getAllTemperaments());
         navigate('/dogs');

@@ -11,3 +11,12 @@
     font-weight: 500;
     font-size: medium;
 }
+
+.resetFilter {
+    font-size: medium;
+    background-color: var(--buttons);
+    color: var(--highlights);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

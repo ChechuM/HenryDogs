@@ -90,7 +90,7 @@ export default function Selectors() {
                 </select>
             </div>
 
-            <button onClick={resetSelectValues}>Reset</button>
+            <button className='resetFilter' onClick={resetSelectValues}>Reset</button>
         </div>
     );
 }

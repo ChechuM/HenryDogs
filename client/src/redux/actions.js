@@ -82,10 +82,9 @@ export const getAllTemperaments = () => {
 }
 
 export const getDogsByName = (dog) => {
-    console.log('getDogByName in actions', dog)
     return async function (dispatch) {
         let response = await axios.get(`http://localhost:3001/dogs/name?name=${dog}`)
-        console.log('response de getDogsByName', response.data)
+
         return dispatch(
             {
                 type: GET_DOGS_BY_NAME,

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 export default function Cards(props) {
     const dogShown = useSelector(store => store.dogShown)
-    console.log('dogShown en Cards', dogShown, dogShown.length)
+
     // Paginado
     const { currentPg } = props;
     const { ITEMS_PER_PAGE } = props;
@@ -29,7 +29,7 @@ export default function Cards(props) {
                         }
                     })
                     : <div>
-                        <h1> One minute, I'm searching ...</h1>
+                        <h1> Hummm ...</h1>
                         <img src='https://media.tenor.com/GTS2P-7x_ssAAAAM/funny-dog.gif' alt='what?' />
                         <h2>I'm sorry, that doesn't exist</h2>
                     </div>

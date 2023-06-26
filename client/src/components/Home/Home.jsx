@@ -21,7 +21,7 @@ import caretLeft from './caretLeft.png';
 import caretRight from './caretRight.png';
 import loadingDog from '../../img/loadingDog.gif';
 
-export default function Home(props) {
+export default function Home() {
     const dogShown = useSelector(store => store.dogShown)
     const loading = useSelector(state => state.loading)
     const dispatch = useDispatch();
