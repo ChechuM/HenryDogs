@@ -14,34 +14,43 @@ export default function Selectors() {
     });
 
     const filterByOrigin = (event) => {
+        dispatch(actions.setLoading(true))
         const value = event.target.value;
         dispatch(actions.filterByOrigin(value));
         dispatch(actions.intersect());
         setSelectValues((prevState) => ({ ...prevState, origin: value }));
+        dispatch(actions.setLoading(false))
     };
 
     const orderByName = (event) => {
+        dispatch(actions.setLoading(true))
         const value = event.target.value;
         dispatch(actions.orderByName(value));
         dispatch(actions.intersect());
         setSelectValues((prevState) => ({ ...prevState, nameOrder: value }));
+        dispatch(actions.setLoading(false))
     };
 
     const orderByWeight = (event) => {
+        dispatch(actions.setLoading(true))
         const value = event.target.value;
         dispatch(actions.orderByWeight(value));
         dispatch(actions.intersect());
         setSelectValues((prevState) => ({ ...prevState, weightOrder: value }));
+        dispatch(actions.setLoading(false))
     };
 
     const filterByTemperament = (event) => {
+        dispatch(actions.setLoading(true))
         const value = event.target.value;
         dispatch(actions.filterByTemperament(value));
         dispatch(actions.intersect());
         setSelectValues((prevState) => ({ ...prevState, temperament: value }));
+        dispatch(actions.setLoading(false))
     };
 
     const resetSelectValues = () => {
+        dispatch(actions.setLoading(true))
         setSelectValues({
             temperament: 'selectTemperament',
             origin: 'selectOrigin',
@@ -49,6 +58,7 @@ export default function Selectors() {
             weightOrder: 'orderByWeight',
         });
         dispatch(actions.getAllDogs())
+        dispatch(actions.setLoading(false))
     };
 
     return (
