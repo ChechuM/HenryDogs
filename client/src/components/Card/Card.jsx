@@ -16,15 +16,19 @@ export default function Card({ id, name, image, temperament, weight }) {
     // crear un botoncito para eliminar el dog -> handleDelete
     const handleDelete = (id) => {
         //tiene que despachar la action deleteDog
+
         dispatch(actions.deleteDog(id))
     }
 
     return (
         <div className="upperDiv">
-            {
-                (typeof id === 'string') && <button onClick={() => handleDelete(id)}>X</button>
-            }
-            <NavLink to={`/dogs/${id}`} className='nameDog'>{name}</NavLink>
+            <div className="nameX">
+                <NavLink to={`/dogs/${id}`} className='nameDog'>{name}</NavLink>
+                {
+                    (typeof id === 'string') && <button className='buttonX' onClick={() => handleDelete(id)}>X</button>
+                }
+            </div>
+
             <div className="imgCard">
                 <img src={image} alt="This is a Dog" className="image" onClick={() => { navigate(`/dogs/${id}`) }} />
                 <div className="divTW">

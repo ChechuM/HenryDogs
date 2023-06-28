@@ -20,7 +20,8 @@ export default function Boceto(props) {
                 {
                     errors.name && <p className="warning">{errors.name}</p>
                 }
-                <p className='tempBoceto'> <span className="title">Temperaments:</span> {input.temperaments.join(' ')} </p>
+                <p className='tempBoceto'> <span className="title">Temperaments:</span> {
+                    input.temperaments && input.temperaments.join(' ')} </p>
                 {
                     errors.temperaments && <p className="warning">{errors.temperaments}</p>
                 }

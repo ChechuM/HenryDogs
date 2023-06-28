@@ -31,6 +31,7 @@ export const deleteDog = (id) => async dispatch => {
     }
 }
 
+
 export const intersect = () => async dispatch => {
     try {
         return dispatch(

@@ -59,3 +59,17 @@
     border-bottom-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
+
+.buttonX {
+    background-color: var(--buttons);
+    color: var(--highlights);
+    border: none;
+    border-radius: 5px;
+    height: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.nameX:hover .buttonX {
+    display: inline;
+}
