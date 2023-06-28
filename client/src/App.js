@@ -1,6 +1,6 @@
 import './App.css';
 import { React } from 'react';
-import { Route, Routes, useLocation, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Create from './components/Create/Create';
 import Detail from './components/Detail/Detail';
@@ -11,7 +11,6 @@ import Landing from './components/Landing/Landing';
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   return (
     <div className="App">

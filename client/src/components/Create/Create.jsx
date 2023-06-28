@@ -14,27 +14,35 @@ import './Create.css';
 import Form from '../Form/Form';
 import Boceto from '../Boceto/Boceto';
 import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions';
 import defaultIcon from '../Form/defaultIcon';
 
-export function validate({ name, temperaments, minHeight, maxHeight, minWeight, maxWeight, span }) {
-    const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
+
+export function validate({ name, temperaments, minHeight, maxHeight, minWeight, maxWeight, span }, allDogs) {
     let errors = {};
+    if (allDogs) {
+        for (let i = 0; i < allDogs.length; i++) {
+            let element = allDogs[i].name;
+            if (name === element) errors.name = 'A dog with that name already exists'
+        }
+    }
+    const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
     if (!name) errors.name = 'Please write the name of the dog';
     if (name.length > 20) errors.name = 'Name must have 20 characters max';
     if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
+    if (!temperaments) errors.temperaments = 'Please pick at least one temperament from the list';
     if (!span) errors.span = 'Please write life span of your dog';
     if (Number(minHeight) < 1) errors.minHeight = 'Minimum Height cannot be lower than one';
     if (Number(minWeight) < 1) errors.minWeight = 'Maximum Height cannot be lower than one';
-    if (Number(minHeight) > Number(maxHeight)) errors.minHeight = 'Minimum Height cannot be higher than Maximum Height'
-    if (Number(minWeight) > Number(maxWeight)) errors.minWeight = 'Minimum Weight cannot be higher than Maximum Weight'
-    if (temperaments.length === 0) errors.temperaments = 'Please pick at least one temperament from the list';
+    if (Number(minHeight) > Number(maxHeight)) errors.minHeight = 'Minimum Height cannot be higher than Maximum Height';
+    if (Number(minWeight) > Number(maxWeight)) errors.minWeight = 'Minimum Weight cannot be higher than Maximum Weight';
     return errors;
 }
 
 export default function Create() {
     const dispatch = useDispatch();
+    const allDogs = useSelector(store => store.allDogs)
 
     const [input, setInput] = useState({
         name: '',
@@ -64,7 +72,7 @@ export default function Create() {
             validate({
                 ...input,
                 [name]: value
-            })
+            }, allDogs)
         )
     };
 
@@ -76,7 +84,7 @@ export default function Create() {
                 image: defaultIcon
             })
         }
-        const errors = validate(input);
+        const errors = validate(input, allDogs);
         if (Object.values(errors).length === 0) {
             dispatch(actions.addDog(input))
             alert('New dog created!')
