@@ -12,7 +12,7 @@ export default function Nav() {
     return (
         <div className="navBar">
             {location.pathname !== '/dogs/newDog' && <SearchBar />}
-            {location.pathname !== '/dogs' && <button onClick={() => { navigate(-1) }} className='homeBtn'> <span className="hide"> let's go home</span> <img src={dogPaw} alt="dogpaw" className="dogPaw" /> </button>}
+            {location.pathname !== '/dogs' && <button onClick={() => { navigate('/dogs') }} className='homeBtn'> <span className="hide"> let's go home</span> <img src={dogPaw} alt="dogpaw" className="dogPaw" /> </button>}
             {location.pathname === '/dogs' && <Selectors />}
         </div>
     )
