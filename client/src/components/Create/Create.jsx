@@ -18,12 +18,13 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
 import defaultIcon from '../Form/defaultIcon';
 
-export function validate({ name, temperaments, minHeight, maxHeight, minWeight, maxWeight }) {
+export function validate({ name, temperaments, minHeight, maxHeight, minWeight, maxWeight, span }) {
     const specialChars = /[`!@#$%^&*()_+\-=\]{};':"\\|,.<>?~]/;
     let errors = {};
     if (!name) errors.name = 'Please write the name of the dog';
     if (name.length > 20) errors.name = 'Name must have 20 characters max';
     if (specialChars.test(name)) errors.name = 'Name must be alphanumeric only';
+    if (!span) errors.span = 'Please write life span of your dog';
     if (Number(minHeight) < 1) errors.minHeight = 'Minimum Height cannot be lower than one';
     if (Number(minWeight) < 1) errors.minWeight = 'Maximum Height cannot be lower than one';
     if (Number(minHeight) > Number(maxHeight)) errors.minHeight = 'Minimum Height cannot be higher than Maximum Height'

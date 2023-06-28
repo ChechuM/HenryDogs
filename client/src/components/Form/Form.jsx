@@ -58,7 +58,7 @@ export default function Form(props) {
                     className='inputGral'
                     name='span'
                     type="text"
-                    placeholder='How many years do this breed live...'
+                    placeholder='How many years does this breed live...'
                     onChange={handleInputChange}
                     value={input.span} />
                 <label className='labelForm'> years </label>

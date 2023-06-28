@@ -34,6 +34,9 @@ export default function Boceto(props) {
                     errors.minHeight && <p className="warning">{errors.minHeight}</p>
                 }
                 <p className='spanBoceto'><span className="title">Life Span:</span> {input.span} years</p>
+                {
+                    errors.span && <p className="warning">{errors.span}</p>
+                }
             </div>
 
             <button className='newDog' onClick={handleSubmit}> <img src={dog} alt="dog" className="dogCreate" /> <span className="hide">  Create New Dog! </span>  </button>

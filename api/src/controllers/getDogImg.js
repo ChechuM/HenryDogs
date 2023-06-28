@@ -8,7 +8,7 @@ const headers = {
 };
 
 const getDogImg = async (id) => {
-    if (!id) return 'weeee loco qué día choto';
+    if (!id) return;
     const { data } = await axios(URLimg + id, headers);
     const { url } = data;
     return url;
