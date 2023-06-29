@@ -31,3 +31,17 @@
 .message {
     font-size: x-large;
 }
+
+.start {
+    font-size: medium;
+    background-color: var(--buttons);
+    color: var(--highlights);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5rem;
+}
+
+.start:hover {
+    font-size: large;
+}

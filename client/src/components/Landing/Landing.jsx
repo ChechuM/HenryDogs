@@ -11,7 +11,6 @@ export default function Landing() {
 
     const navigate = useNavigate();
     const getStarted = () => {
-        //dispatch(actions.getAllTemperaments());
         navigate('/dogs');
     }
 
