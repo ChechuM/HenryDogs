@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import dogButton from './dogButton.png'
 import fetch from './fetch.png';
 
-export default function SearchBar(props) {
+export default function SearchBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [input, setInput] = useState('')

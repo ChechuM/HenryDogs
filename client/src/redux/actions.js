@@ -11,8 +11,23 @@ export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT'
 export const SET_LOADING = 'SET_LOADING';
 export const GET_TEMPS_DB = 'GET_TEMPS_DB';
 export const INTERSECT = 'INTERSECT';
-export const DELETE_DOG = 'DELETE_DOG'
+export const DELETE_DOG = 'DELETE_DOG';
+// export const PG_HANDLER = 'PG_HANDLER';
 
+
+// export const handlePg = (direction) => async dispatch => {
+//     try {
+//         return dispatch(
+//             {
+//                 type: PG_HANDLER,
+//                 payload: direction
+//             }
+//         )
+//     }
+//     catch (error) {
+//         return error
+//     }
+// }
 
 export const deleteDog = (id) => async dispatch => {
     //si es un perro de la DB pego a la ruta delete 

@@ -37,7 +37,6 @@ export default function Home() {
 
     // PAGINADO: creo otro estado local que setee el nro de página inicial y que luego permita cambiarlo
 
-
     const [currentPg, setCurrentPg] = useState(0);
 
     const ITEMS_PER_PAGE = 8;

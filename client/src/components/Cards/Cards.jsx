@@ -7,6 +7,7 @@ export default function Cards(props) {
     const dogShown = useSelector(store => store.dogShown)
     const loading = useSelector(state => state.loading)
 
+
     // Paginado
     const { currentPg } = props;
     const { ITEMS_PER_PAGE } = props;

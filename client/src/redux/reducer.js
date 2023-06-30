@@ -6,7 +6,9 @@ const initialState = {
     byOrigin: [],
     dogShown: [], // éste es el que se renderiza
     temperaments: [],
-    loading: "Loading..."
+    loading: "Loading...",
+    // currentPg: 0,
+    // itemsPg: 8
 }
 
 function intersection(arr1, arr2, arr3) {
@@ -25,6 +27,19 @@ function intersection(arr1, arr2, arr3) {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        // case PG_HANDLER:
+        //     const ITEMS_PER_PAGE = state.itemsPg
+        //     let toPage = 0
+        //     if (state.currentPg + 1 >= Math.ceil(state.dogShown.length / ITEMS_PER_PAGE)) return { ...state };
+        //     if (state.currentPg <= 1) return { ...state }
+        //     if (action.payload === 'next') toPage = state.currentPg + 1
+        //     if (action.payload === 'prev') toPage = state.currentPg - 1;
+
+        //     return {
+        //         ...state,
+        //         currentPg: toPage
+        //     }
+
         case DELETE_DOG:
             const notDeleted = state.allDogs.filter(dog => dog.id !== action.payload)
 
